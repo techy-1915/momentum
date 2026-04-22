@@ -1,9 +1,10 @@
 services:
   - type: web
     name: momentum-api
-    runtime: docker
-    dockerfilePath: ./backend/Dockerfile
-    dockerContext: ./backend
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     plan: free
     disk:
       name: momentum-data
@@ -12,6 +13,6 @@ services:
     envVars:
       - key: DATABASE_URL
         value: sqlite:////data/momentum.db
-    buildCommand: ""
-    startCommand: "uvicorn main:app --host 0.0.0.0 --port $PORT"
+      - key: PYTHON_VERSION
+        value: "3.12.0"
     healthCheckPath: /health
