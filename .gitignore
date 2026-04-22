@@ -1,0 +1,9 @@
+backend/momentum.db
+backend/__pycache__/
+backend/*.db
+frontend/node_modules/
+frontend/dist/
+frontend/dev-dist/
+backend/static_dist/
+*.apk
+.env.android
